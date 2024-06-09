@@ -1,0 +1,14 @@
+{
+  "Id": 1,
+  "Name": "Bas van Cleef",
+  "FirstName": "Bas",
+  "LastName": "van Cleef",
+  "Email": "bas@test.nl",
+  "Phone": "0612345678",
+  "Address": "Kerkstraat 1",
+  "City": "Amsterdam",
+  "ZipCode": "1234AB",
+  "Country": "Nederland",
+  "DateOfBirth": "2005-03-28",
+  "Language": "nl"
+}

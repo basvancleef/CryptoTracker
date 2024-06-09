@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    x:Class="CryptoTracker.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:CryptoTracker.ViewModels"
+    xmlns:models="clr-namespace:CryptoTracker.Models"
+    x:DataType="viewmodel:HomeViewModel"
+    Title="{Binding Title}">
+
+    <Grid
+        ColumnSpacing="5"
+        RowSpacing="0"
+        RowDefinitions="50, *, 50"
+        ColumnDefinitions="*">
+        <SearchBar
+            Grid.Row="0"
+            Grid.Column="0"
+            Placeholder="Search..."
+            BackgroundColor="White">
+        </SearchBar>
+
+        <CollectionView
+            Grid.Row="1"
+            Grid.ColumnSpan="0"
+            BackgroundColor="Transparent"
+            ItemsSource="{Binding Currencies}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Currency">
+                    <Grid Padding="10">
+                        <FlexLayout HorizontalOptions="FillAndExpand"
+                                    JustifyContent="SpaceBetween">
+                            <HorizontalStackLayout
+                                Margin="5,0,0,0"
+                                Spacing="10">
+                                <Image Aspect="AspectFill"
+                                       Source="{Binding Symbol}"
+                                       HorizontalOptions="StartAndExpand"
+                                       BackgroundColor="White"
+                                       VerticalOptions="Center"
+                                       WidthRequest="50"
+                                       HeightRequest="50">
+                                </Image>
+                                <VerticalStackLayout HorizontalOptions="StartAndExpand">
+                                    <Label VerticalTextAlignment="Center" Style="{StaticResource LargeLabel}"
+                                           Text="{Binding Name}" />
+                                    <Label VerticalTextAlignment="Center" Style="{StaticResource MediumLabel}"
+                                           Text="{Binding ShortName}" />
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+
+                            <VerticalStackLayout VerticalOptions="Center"
+                                                 Margin="0,0,5,0">
+                                <!-- <Label HorizontalTextAlignment="End" Style="{StaticResource LargeLabel}" -->
+                                <!--        Text="{Binding ChangeInPriceAmount, StringFormat='€{0:N5}'}" /> -->
+                                <!-- <Label HorizontalTextAlignment="End" Style="{StaticResource MediumLabel}" -->
+                                <!--        Text="{Binding ChangeInPricePercentage, StringFormat='{0:+ 0.00;- 0.00;0.00}%'}" /> -->
+                                <Label HorizontalTextAlignment="End" Style="{StaticResource LargeLabel}" Text="{Binding OpeningPrice, StringFormat='€{0:N2}'}"/>
+                                <Label HorizontalTextAlignment="End" FontSize="14" TextColor="{Binding ChangeInPriceAmount}">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0:+0.00;- 0.00;0.00} ({1:0.00;0.00;0.00}%)">
+                                            <Binding Path="ChangeInPriceAmount"/>
+                                            <Binding Path="ChangeInPricePercentage"/>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </VerticalStackLayout>
+                        </FlexLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

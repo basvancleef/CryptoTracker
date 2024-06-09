@@ -1,0 +1,23 @@
+[
+  {
+    "Id": 1,
+    "Title": "First",
+    "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "Date": "2024-01-01",
+    "Image": "https://via.placeholder.com/150"
+  },
+  {
+    "Id": 2,
+    "Title": "Second",
+    "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "Date": "2024-01-01",
+    "Image": "https://via.placeholder.com/150"
+  },
+  {
+    "Id": 3,
+    "Title": "Third",
+    "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "Date": "2024-01-01",
+    "Image": "https://via.placeholder.com/150"
+  }
+]

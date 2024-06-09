@@ -1,15 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<Shell
-    x:Class="CryptoTracker.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:CryptoTracker"
-    Shell.FlyoutBehavior="Disabled"
-    Title="CryptoTracker">
-
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:CryptoTracker.Views"
+       x:Class="CryptoTracker.AppShell">
+    <TabBar>
+        <Tab Title="Home" Icon="home.png">
+            <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="MainPage" />
+        </Tab>
+        <Tab Title="News" Icon="news.png">
+            <ShellContent ContentTemplate="{DataTemplate views:NewsPage}" Route="NewsPage" />
+        </Tab>
+        <Tab Title="Notes" Icon="notes.png">
+            <ShellContent ContentTemplate="{DataTemplate views:NoteListPage}" Route="NoteListPage" />
+        </Tab>
+        <Tab Title="Profile" Icon="user.png">
+            <ShellContent ContentTemplate="{DataTemplate views:ProfilePage}" Route="ProfilePage" />
+        </Tab>
+    </TabBar>
 </Shell>
