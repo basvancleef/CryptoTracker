@@ -5,7 +5,7 @@ using Shared.Models;
 namespace Api.Controllers;
 
 [ApiController]
-[Route("/api/[controller]")]
+[Route("[controller]")]
 public class AuthController(IAuthService authService) : ControllerBase
 {
     [HttpPost("login")]
@@ -20,9 +20,27 @@ public class AuthController(IAuthService authService) : ControllerBase
         await authService.Register(user);
     }
     
-    [HttpGet("test")]
-    public Task Test()
+    [HttpGet("jan")]
+    public string Test()
     {
-        return null;
+        return "yo";
+    }
+
+    [HttpGet("yobas")]
+    public async Task<ActionResult<string>> Yo()
+    {
+        await Task.Delay(5);
+
+        var test = Random.Shared.Next(0, 1);
+
+        if (test == 0)
+        {
+
+            return "yo";
+        }
+        else
+        {
+            return NoContent();
+        }
     }
 }
