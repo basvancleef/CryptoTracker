@@ -2,6 +2,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoTracker", "CryptoTracker\CryptoTracker.csproj", "{D264AF10-5A53-457F-9ACB-AC3EE6D5EB3E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoTracker.Tests", "CryptoTracker.Tests\CryptoTracker.Tests.csproj", "{37DA481B-2151-4F61-9AF6-58794311A9E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoTracker.Shared", "CryptoTracker.Shared\CryptoTracker.Shared.csproj", "{7AE5685C-F99F-4617-9C63-F2CFE7536FC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoTracker.Api", "CryptoTracker.Api\CryptoTracker.Api.csproj", "{F616B412-A665-4660-85CB-2F4203DFD248}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +18,17 @@ Global
 		{D264AF10-5A53-457F-9ACB-AC3EE6D5EB3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D264AF10-5A53-457F-9ACB-AC3EE6D5EB3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D264AF10-5A53-457F-9ACB-AC3EE6D5EB3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37DA481B-2151-4F61-9AF6-58794311A9E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37DA481B-2151-4F61-9AF6-58794311A9E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37DA481B-2151-4F61-9AF6-58794311A9E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37DA481B-2151-4F61-9AF6-58794311A9E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AE5685C-F99F-4617-9C63-F2CFE7536FC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AE5685C-F99F-4617-9C63-F2CFE7536FC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AE5685C-F99F-4617-9C63-F2CFE7536FC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AE5685C-F99F-4617-9C63-F2CFE7536FC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F616B412-A665-4660-85CB-2F4203DFD248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F616B412-A665-4660-85CB-2F4203DFD248}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F616B412-A665-4660-85CB-2F4203DFD248}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F616B412-A665-4660-85CB-2F4203DFD248}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,5 +1,3 @@
-using System.Net.Http.Json;
-
 namespace CryptoTracker.Services;
 
 public class ArticleService

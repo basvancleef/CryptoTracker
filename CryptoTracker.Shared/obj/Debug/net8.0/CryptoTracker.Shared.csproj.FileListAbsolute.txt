@@ -1,0 +1,13 @@
+/Users/basvancleef/Developer/CryptoTracker/CryptoTracker.Shared/bin/Debug/net8.0/CryptoTracker.Shared.deps.json
+/Users/basvancleef/Developer/CryptoTracker/CryptoTracker.Shared/bin/Debug/net8.0/CryptoTracker.Shared.dll
+/Users/basvancleef/Developer/CryptoTracker/CryptoTracker.Shared/bin/Debug/net8.0/CryptoTracker.Shared.pdb
+/Users/basvancleef/Developer/CryptoTracker/CryptoTracker.Shared/obj/Debug/net8.0/CryptoTracker.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/Users/basvancleef/Developer/CryptoTracker/CryptoTracker.Shared/obj/Debug/net8.0/CryptoTracker.Shared.AssemblyInfoInputs.cache
+/Users/basvancleef/Developer/CryptoTracker/CryptoTracker.Shared/obj/Debug/net8.0/CryptoTracker.Shared.AssemblyInfo.cs
+/Users/basvancleef/Developer/CryptoTracker/CryptoTracker.Shared/obj/Debug/net8.0/CryptoTracker.Shared.csproj.CoreCompileInputs.cache
+/Users/basvancleef/Developer/CryptoTracker/CryptoTracker.Shared/obj/Debug/net8.0/CryptoTracker.Shared.sourcelink.json
+/Users/basvancleef/Developer/CryptoTracker/CryptoTracker.Shared/obj/Debug/net8.0/CryptoTracker.Shared.dll
+/Users/basvancleef/Developer/CryptoTracker/CryptoTracker.Shared/obj/Debug/net8.0/refint/CryptoTracker.Shared.dll
+/Users/basvancleef/Developer/CryptoTracker/CryptoTracker.Shared/obj/Debug/net8.0/CryptoTracker.Shared.pdb
+/Users/basvancleef/Developer/CryptoTracker/CryptoTracker.Shared/obj/Debug/net8.0/ref/CryptoTracker.Shared.dll
+/Users/basvancleef/Developer/CryptoTracker/CryptoTracker.Shared/obj/Debug/net8.0/CryptoTracker.Shared.csproj.AssemblyReference.cache

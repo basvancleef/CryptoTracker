@@ -18,21 +18,23 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
-        builder.Services.AddSingleton<ArticleService>();
-        builder.Services.AddTransient<ArticlesViewModel>();
-        builder.Services.AddTransient<NewsPage>();
-        
-        builder.Services.AddTransient<MainPage>();
+        // Register services:
         builder.Services.AddSingleton<HomeService>();
-        builder.Services.AddTransient<HomeViewModel>();
-        
-        builder.Services.AddSingleton<ProfileService>();
-        builder.Services.AddTransient<ProfileViewModel>();
-        builder.Services.AddTransient<ProfilePage>();
-
+        builder.Services.AddSingleton<ArticleService>();
         builder.Services.AddTransient<NotesService>();
-        builder.Services.AddTransient<NotesViewModel>();
+        builder.Services.AddSingleton<ProfileService>();
+        
+        // Register views:
+        builder.Services.AddTransient<MainPage>();
+        builder.Services.AddTransient<NewsPage>();
         builder.Services.AddTransient<NoteListPage>();
+        builder.Services.AddTransient<ProfilePage>();
+        
+        // Register ViewModels:
+        builder.Services.AddTransient<HomeViewModel>();
+        builder.Services.AddTransient<ArticlesViewModel>();
+        builder.Services.AddTransient<NotesViewModel>();
+        builder.Services.AddTransient<ProfileViewModel>();
         
         return builder.Build();
     }
