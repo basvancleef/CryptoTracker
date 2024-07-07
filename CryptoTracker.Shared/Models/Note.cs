@@ -9,6 +9,7 @@ public class Note
     public string Description { get; set; }
     public string Date { get; set; }
     public string? Image { get; set; }
+    public int UserId { get; set; }
 }
 
 [JsonSerializable(typeof(List<Note>))]

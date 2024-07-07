@@ -1,8 +1,12 @@
+using CommunityToolkit.Mvvm.Input;
+
 namespace CryptoTracker.ViewModels;
 
 public partial class NotesViewModel : BaseViewModel
 {
-    public ObservableCollection<Note> Notes { get; } = new();
+    [ObservableProperty]
+    private List<Note> _notes;
+    
     NotesService notesService;
     
     public NotesViewModel(NotesService notesService)
@@ -10,6 +14,25 @@ public partial class NotesViewModel : BaseViewModel
         Title = "Notes";
         this.notesService = notesService;
     }
+
+    [RelayCommand]
+    private async Task OpenDetailPageAsync(int id)
+    {
+        await MainThread.InvokeOnMainThreadAsync(() =>
+        {
+            Shell.Current.GoToAsync($"{nameof(NoteDetailPage)}?id={id}");
+        });
+    }
+    
+    [RelayCommand]
+    private async Task OpenNewNotePageAsync()
+    {
+        await MainThread.InvokeOnMainThreadAsync(() =>
+        {
+            Shell.Current.GoToAsync($"{nameof(NoteAddPage)}");
+        });
+    }
+
     
     public async Task GetNotesList()
     {
@@ -20,12 +43,8 @@ public partial class NotesViewModel : BaseViewModel
         {
             IsBusy = true;
             var notes = await notesService.GetNotes();
-
-            if(Notes.Count != 0)
-                Notes.Clear();
-                
-            foreach(var note in notes)
-                Notes.Add(note);
+            
+            Notes = notes;
         }
         catch (Exception ex)
         {

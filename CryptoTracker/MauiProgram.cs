@@ -23,19 +23,29 @@ public static class MauiProgram
         builder.Services.AddSingleton<ArticleService>();
         builder.Services.AddTransient<NotesService>();
         builder.Services.AddSingleton<ProfileService>();
-        
+        // builder.Services.AddSingleton<AuthService>();
+
         // Register views:
         builder.Services.AddTransient<MainPage>();
         builder.Services.AddTransient<NewsPage>();
         builder.Services.AddTransient<NoteListPage>();
         builder.Services.AddTransient<ProfilePage>();
-        
+        builder.Services.AddTransient<NoteDetailPage>();
+        builder.Services.AddTransient<CoinDetailPage>();
+        builder.Services.AddTransient<NoteAddPage>();
+        // builder.Services.AddTransient<LoginPage>();
+        // builder.Services.AddTransient<RegisterPage>();
+        // builder.Services.AddTransient<Loading>();
+
         // Register ViewModels:
         builder.Services.AddTransient<HomeViewModel>();
         builder.Services.AddTransient<ArticlesViewModel>();
         builder.Services.AddTransient<NotesViewModel>();
         builder.Services.AddTransient<ProfileViewModel>();
-        
+        builder.Services.AddTransient<NoteDetailPageViewModel>();
+        builder.Services.AddTransient<CoinDetailPageViewModel>();
+        // builder.Services.AddTransient<LoginViewModel>();
+
         return builder.Build();
     }
 }

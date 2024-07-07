@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    x:Class="CryptoTracker.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:CryptoTracker.ViewModels"
+    x:DataType="viewmodel:LoginViewModel"
+    Title="{Binding Title}">			 
+
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+        <Label HorizontalTextAlignment="Center" Text="Login" FontSize="Title" Margin="0,20,0,0" />
+
+        <BoxView HeightRequest="20" BackgroundColor="Transparent" />
+
+        <Border 
+            StrokeThickness="0"
+            BackgroundColor="White"
+            StrokeShape="RoundRectangle 10,10,10,10"
+            Padding="10">
+            <Entry MinimumWidthRequest="280" Text="{Binding Email}" Placeholder="Email" />
+        </Border>
+		
+        <BoxView HeightRequest="20" BackgroundColor="Transparent" />
+
+        <Border 
+            StrokeThickness="0"
+            BackgroundColor="White"
+            StrokeShape="RoundRectangle 10,10,10,10"
+            Padding="10">
+            <Entry Text="{Binding Password}"  Placeholder="Password" IsPassword="True" />
+        </Border>
+
+        <Label Text="{Binding ErrorMessage}" TextColor="Red" />
+
+        <Button Command="{Binding SignInCommand}" Text="Login" MaximumWidthRequest="275" Margin="0,20,0,0" />
+
+        <Label Text="Sign up" TextColor="Blue" Margin="0,20" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="SignUpTapped" />
+            </Label.GestureRecognizers>
+        </Label>
+    </StackLayout>
+</ContentPage>

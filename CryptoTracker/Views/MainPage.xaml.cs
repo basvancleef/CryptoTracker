@@ -2,8 +2,10 @@
 
 public partial class MainPage : ContentPage
 {
-    public MainPage(HomeViewModel viewModel)
+    public MainPage()
     {
+        HomeViewModel viewModel = new HomeViewModel(new HomeService());
+        
         InitializeComponent();
         BindingContext = viewModel;
     }

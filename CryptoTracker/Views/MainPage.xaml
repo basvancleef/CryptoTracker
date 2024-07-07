@@ -7,6 +7,8 @@
     xmlns:viewmodel="clr-namespace:CryptoTracker.ViewModels"
     xmlns:models="clr-namespace:Shared.Models;assembly=CryptoTracker.Shared"
     x:DataType="viewmodel:HomeViewModel"
+    x:Name="mainPage"
+    Shell.TabBarIsVisible="True"
     Title="{Binding Title}">
 
     <Grid
@@ -29,6 +31,10 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Currency">
                     <Grid Padding="10">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BindingContext.OpenDetailPageCommand, Source={x:Reference mainPage}}"
+                                                  CommandParameter="{Binding Id}"/>                                        
+                        </Grid.GestureRecognizers>
                         <FlexLayout HorizontalOptions="FillAndExpand"
                                     JustifyContent="SpaceBetween">
                             <HorizontalStackLayout

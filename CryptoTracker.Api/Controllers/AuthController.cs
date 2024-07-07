@@ -1,4 +1,5 @@
-﻿using Api.Services.Interfaces;
+﻿using System.Security.Claims;
+using Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Models;
 
@@ -9,9 +10,9 @@ namespace Api.Controllers;
 public class AuthController(IAuthService authService) : ControllerBase
 {
     [HttpPost("login")]
-    public async Task<User?> Login(string email, string password)
+    public async Task<User?> Login(LoginModel model)
     {
-        return await authService.Login(email, password);
+        return await authService.Login(model);
     }
 
     [HttpPost("register")]
@@ -20,27 +21,30 @@ public class AuthController(IAuthService authService) : ControllerBase
         await authService.Register(user);
     }
     
-    [HttpGet("jan")]
-    public string Test()
+    [HttpGet("users")]
+    public async Task<List<User>> Test()
     {
-        return "yo";
+        return await authService.GetAllUsersAsync();
     }
-
-    [HttpGet("yobas")]
-    public async Task<ActionResult<string>> Yo()
+    
+    [HttpGet("user/{id}")]
+    public async Task<User?> GetUserById([FromRoute] int id)
     {
-        await Task.Delay(5);
+        return await authService.GetUserByIdAsync(id);
+    }
+    
+    [HttpGet("me")]
+    public async Task<ActionResult<User>> GetCurrentUser()
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        
+        if (string.IsNullOrEmpty(userId))
+            return NotFound("User not found");
 
-        var test = Random.Shared.Next(0, 1);
+        var user = await authService.GetUserByIdAsync(int.Parse(userId));
+        if (user == null)
+            return NotFound("User not found");
 
-        if (test == 0)
-        {
-
-            return "yo";
-        }
-        else
-        {
-            return NoContent();
-        }
+        return Ok(user);
     }
 }

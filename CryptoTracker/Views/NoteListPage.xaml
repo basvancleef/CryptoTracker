@@ -7,7 +7,31 @@
     xmlns:model="clr-namespace:Shared.Models;assembly=CryptoTracker.Shared"
     xmlns:viewmodel="clr-namespace:CryptoTracker.ViewModels"
     x:DataType="viewmodel:NotesViewModel"
+    x:Name="notesPage"
     Title="{Binding Title}">
+    <!-- <ContentPage.ToolbarItems> -->
+        <!-- <ToolbarItem Text="Add Item"> -->
+            <!-- <ToolbarItem.IconImageSource> -->
+                <!-- <OnPlatform x:TypeArguments="ImageSource"> -->
+                    <!-- <On Value="plus.png" /> -->
+                <!-- </OnPlatform> -->
+            <!-- </ToolbarItem.IconImageSource> -->
+        <!-- </ToolbarItem> -->
+    <!-- </ContentPage.ToolbarItems> -->
+    
+    <!-- <ContentPage.ToolbarItems> -->
+    <!--     <ToolbarItem Clicked="ow new NotImplemen"> -->
+    <!--         <ToolbarItem.IconImageSource> -->
+    <!--             <FontImageSource -->
+    <!--                 FontFamily="{StaticResource FontAwesomeSolid}" -->
+    <!--                 Glyph="&#xe518;" -->
+    <!--                 Color="White" -->
+    <!--                 Size="35" /> -->
+    <!--         </ToolbarItem.IconImageSource> -->
+    <!--     </ToolbarItem> -->
+    <!-- </ContentPage.ToolbarItems> -->
+
+    <AbsoluteLayout>
     <Grid
         ColumnDefinitions="*,*"
         ColumnSpacing="5"
@@ -20,6 +44,10 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Note">
                     <Grid Padding="10">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BindingContext.OpenDetailPageCommand, Source={x:Reference notesPage}}"
+                                                  CommandParameter="{Binding Id}"/>                                        
+                        </Grid.GestureRecognizers>
                         <Frame HeightRequest="125" BorderColor="White">
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFill" Source="{Binding Image}"
@@ -38,5 +66,13 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
     </Grid>
+        <ImageButton Source="plus.png" 
+                     BackgroundColor="#0500FF"
+                     Command="{Binding BindingContext.OpenNewNotePageCommand, Source={x:Reference notesPage}}"
+                     CornerRadius="30"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"  
+                     AbsoluteLayout.LayoutBounds=".95,.95,60,60" />
+    </AbsoluteLayout>
 </ContentPage>

@@ -4,6 +4,9 @@ namespace Api.Services.Interfaces;
 
 public interface IAuthService
 {
-    Task<User?> Login(string email, string password);
     Task Register(User user);
+    // Task<User?> Login(string email, string password);
+    Task<User?> Login(LoginModel model);
+    Task<List<User>> GetAllUsersAsync();
+    Task<User?> GetUserByIdAsync(int id);
 }
