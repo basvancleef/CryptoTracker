@@ -25,4 +25,10 @@ public class NotesController(INotesService notesService) : ControllerBase
     {
         await notesService.DeleteNoteAsync(id);
     }
+    
+    [HttpPut("update-note/{id}")]
+    public async Task UpdateNote([FromRoute] int id, [FromBody] Note note)
+    {
+        await notesService.UpdateNoteAsync(id, note);
+    }
 }

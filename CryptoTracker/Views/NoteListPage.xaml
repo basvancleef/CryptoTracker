@@ -9,70 +9,45 @@
     x:DataType="viewmodel:NotesViewModel"
     x:Name="notesPage"
     Title="{Binding Title}">
-    <!-- <ContentPage.ToolbarItems> -->
-        <!-- <ToolbarItem Text="Add Item"> -->
-            <!-- <ToolbarItem.IconImageSource> -->
-                <!-- <OnPlatform x:TypeArguments="ImageSource"> -->
-                    <!-- <On Value="plus.png" /> -->
-                <!-- </OnPlatform> -->
-            <!-- </ToolbarItem.IconImageSource> -->
-        <!-- </ToolbarItem> -->
-    <!-- </ContentPage.ToolbarItems> -->
-    
-    <!-- <ContentPage.ToolbarItems> -->
-    <!--     <ToolbarItem Clicked="ow new NotImplemen"> -->
-    <!--         <ToolbarItem.IconImageSource> -->
-    <!--             <FontImageSource -->
-    <!--                 FontFamily="{StaticResource FontAwesomeSolid}" -->
-    <!--                 Glyph="&#xe518;" -->
-    <!--                 Color="White" -->
-    <!--                 Size="35" /> -->
-    <!--         </ToolbarItem.IconImageSource> -->
-    <!--     </ToolbarItem> -->
-    <!-- </ContentPage.ToolbarItems> -->
-
     <AbsoluteLayout>
-    <Grid
-        ColumnDefinitions="*,*"
-        ColumnSpacing="5"
-        RowDefinitions="*,Auto"
-        RowSpacing="0">
-        <CollectionView
-            Grid.ColumnSpan="2"
-            ItemsSource="{Binding Notes}"
-            SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Note">
-                    <Grid Padding="10">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding BindingContext.OpenDetailPageCommand, Source={x:Reference notesPage}}"
-                                                  CommandParameter="{Binding Id}"/>                                        
-                        </Grid.GestureRecognizers>
-                        <Frame HeightRequest="125" BorderColor="White">
-                            <Grid Padding="0" ColumnDefinitions="125,*">
-                                <Image Aspect="AspectFill" Source="{Binding Image}"
-                                       WidthRequest="125"
-                                       HeightRequest="125" />
-                                <VerticalStackLayout
-                                    VerticalOptions="Center"
-                                    Grid.Column="1"
-                                    Padding="10">
-                                    <Label Text="{Binding Title}" />
-                                    <Label Text="{Binding  Description}" />
-                                </VerticalStackLayout>
-                            </Grid>
-                        </Frame>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
-    </Grid>
-        <ImageButton Source="plus.png" 
+        <Grid
+            ColumnDefinitions="*,*"
+            ColumnSpacing="5"
+            RowDefinitions="*,Auto"
+            RowSpacing="0">
+            <CollectionView
+                Grid.ColumnSpan="2"
+                ItemsSource="{Binding Notes}"
+                SelectionMode="Single"
+                SelectionChangedCommand="{Binding SelectNoteCommand}"
+                SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={RelativeSource Self}}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Note">
+                        <Grid Padding="10">
+                            <Frame HeightRequest="125" BorderColor="White">
+                                <Grid Padding="0" ColumnDefinitions="125,*">
+                                    <Image Aspect="AspectFill" Source="{Binding Image}"
+                                           WidthRequest="125"
+                                           HeightRequest="125" />
+                                    <VerticalStackLayout
+                                        VerticalOptions="Center"
+                                        Grid.Column="1"
+                                        Padding="10">
+                                        <Label Text="{Binding Title}" />
+                                        <Label Text="{Binding  Description}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+        <ImageButton Source="plus.png"
                      BackgroundColor="#0500FF"
-                     Command="{Binding BindingContext.OpenNewNotePageCommand, Source={x:Reference notesPage}}"
+                     Command="{Binding NewCommand}"
                      CornerRadius="30"
-                     AbsoluteLayout.LayoutFlags="PositionProportional"  
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
                      AbsoluteLayout.LayoutBounds=".95,.95,60,60" />
     </AbsoluteLayout>
 </ContentPage>

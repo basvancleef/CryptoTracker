@@ -1,14 +1,11 @@
 namespace CryptoTracker.Views;
 
-[QueryProperty(nameof(NoteId), "id")]
+[QueryProperty(nameof(Note), "Note")]
 public partial class NoteDetailPage : ContentPage
 {
-    public required string NoteId;
-
     public NoteDetailPage(NoteDetailPageViewModel viewModel)
     {
         InitializeComponent();
-
         BindingContext = viewModel;
     }
 }

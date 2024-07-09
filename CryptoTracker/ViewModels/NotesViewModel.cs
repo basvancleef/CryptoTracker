@@ -1,59 +1,51 @@
-using CommunityToolkit.Mvvm.Input;
+using System.Windows.Input;
 
 namespace CryptoTracker.ViewModels;
 
 public partial class NotesViewModel : BaseViewModel
 {
-    [ObservableProperty]
-    private List<Note> _notes;
-    
-    NotesService notesService;
-    
-    public NotesViewModel(NotesService notesService)
+    private readonly NotesService _notesService;
+
+    public ObservableCollection<Note> Notes { get; set; } = [];
+    public ICommand NewCommand { get; set; }
+    public ICommand SelectNoteCommand { get; set; }
+
+    public NotesViewModel(NotesService service)
     {
+        _notesService = service;
+
         Title = "Notes";
-        this.notesService = notesService;
+        NewCommand = new Command(async () => await AddItem());
+        SelectNoteCommand = new Command<Note>(async (note) => await SelectionChanged(note));
+        _ = RefreshNotes();
+        
+        OnPropertyChanged(nameof(Notes));
     }
 
-    [RelayCommand]
-    private async Task OpenDetailPageAsync(int id)
+    public async Task RefreshNotes()
     {
-        await MainThread.InvokeOnMainThreadAsync(() =>
-        {
-            Shell.Current.GoToAsync($"{nameof(NoteDetailPage)}?id={id}");
-        });
-    }
-    
-    [RelayCommand]
-    private async Task OpenNewNotePageAsync()
-    {
-        await MainThread.InvokeOnMainThreadAsync(() =>
-        {
-            Shell.Current.GoToAsync($"{nameof(NoteAddPage)}");
-        });
+        Notes.Clear();
+        var notes = await _notesService.GetNotesAsync();
+        notes.ForEach(Notes.Add);
+        
+        OnPropertyChanged(nameof(Notes));
     }
 
-    
-    public async Task GetNotesList()
+    private async Task AddItem()
     {
-        if (IsBusy)
-            return;
+        var navigationParameter = new Dictionary<string, object>
+        {
+            { nameof(Note), new Note { Id = 4, Date = DateTime.Now.ToShortDateString(), UserId = 1} }
+        };
+        await Shell.Current.GoToAsync(nameof(NoteDetailPage), navigationParameter);
+    }
 
-        try
+    private async Task SelectionChanged(Note note)
+    {
+        var navigationParameter = new Dictionary<string, object>
         {
-            IsBusy = true;
-            var notes = await notesService.GetNotes();
-            
-            Notes = notes;
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine($"Unable to get notes: {ex.Message}");
-            await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
-        }
-        finally
-        {
-            IsBusy = false;
-        }
+            { nameof(Note), note }
+        };
+        await Shell.Current.GoToAsync(nameof(NoteDetailPage), navigationParameter);
     }
 }

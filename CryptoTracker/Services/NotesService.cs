@@ -6,13 +6,13 @@ public class NotesService
 {
     HttpClient _httpClient;
     readonly JsonSerializerOptions? _serializerOptions;
-    
+
     public List<Note>? Notes { get; private set; }
-    
+
     public NotesService()
     {
         _httpClient = new HttpClient();
-        
+
         _serializerOptions = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -20,17 +20,18 @@ public class NotesService
         };
     }
     
-    public async Task<List<Note>?> GetNotes()
+    public async Task<List<Note>?> GetNotesAsync()
     {
         Notes = [];
-        
-        Uri uri = new(string.Format(Constants.RestUrl + "Notes/notes"));
+
+        Uri uri = new(string.Format(Constants.RestUrl, string.Empty));
         try
         {
-            HttpResponseMessage response = await _httpClient.GetAsync(uri);
+            HttpResponseMessage response = await _httpClient.GetAsync(uri + "Notes/notes");
+            
             if (response.IsSuccessStatusCode)
             {
-                var content = await response.Content.ReadAsStringAsync();
+                string content = await response.Content.ReadAsStringAsync();
                 Notes = JsonSerializer.Deserialize<List<Note>>(content, _serializerOptions);
             }
         }
@@ -40,40 +41,35 @@ public class NotesService
         }
 
         return Notes;
-        
-        // if (notesList?.Count > 0)
-        // {
-            // return notesList;
-        // }
-        
-        // var response = await httpClient.GetAsync("http://localhost:5201/Notes/notes");
-        // var content = await response.Content.ReadAsStringAsync();
-        // // notesList = JsonSerializer.Deserialize<List<Note>>(content);
-        // notesList.ForEach(content);
-        //
-        // Debug.WriteLine($"NotesList: {notesList}");
-        
-        // Offline mode
-        // await using var stream = await FileSystem.OpenAppPackageFileAsync("Notes.json");
-        // using var reader = new StreamReader(stream);
-        //
-        // var contents = await reader.ReadToEndAsync();
-        // notesList = JsonSerializer.Deserialize(contents, NoteContext.Default.ListNote);
+    }
 
-        // return notesList;
-    }
-    
-    public async Task<Note> GetNoteById(int id)
+    public async Task SaveNote(Note note, bool isNewItem = false)
     {
-        return Notes.FirstOrDefault(note => note.Id == id) ?? new Note();
+        Uri uri = new(string.Format(Constants.RestUrl, string.Empty));
+
+        try
+        {
+            string json = JsonSerializer.Serialize(note, _serializerOptions);
+            StringContent content = new(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = null;
+            if (isNewItem)
+                response = await _httpClient.PostAsync(uri + "Notes/add-note", content);
+            else
+                response = await _httpClient.PutAsync(uri + $"Notes/update-note/{note.Id}", content);
+
+            if (response.IsSuccessStatusCode)
+                Debug.WriteLine(@"\Note successfully saved.");
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(@"\tERROR {0}", ex.Message);
+        }
     }
-    
-    public async Task AddNote(Note note)
+
+    public async Task DeleteNoteAsync(int id)
     {
-        var json = JsonSerializer.Serialize(note);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
-        
-        HttpResponseMessage response = await _httpClient.PostAsync(Constants.RestUrl + "Notes/add", content);
+        HttpResponseMessage response = await _httpClient.DeleteAsync(Constants.RestUrl + $"Notes/delete-note/{id}");
         response.EnsureSuccessStatusCode();
     }
 }

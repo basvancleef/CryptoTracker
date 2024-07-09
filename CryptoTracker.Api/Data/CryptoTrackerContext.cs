@@ -51,6 +51,24 @@ public class CryptoTrackerContext : DbContext
                 Date = DateTime.Now.ToShortDateString(),
                 Image = "https://via.placeholder.com/150",
                 UserId = 1,
+            },
+            new Note
+            {
+                Id = 3,
+                Title = "Test 3",
+                Description = "This is the 3rd note",
+                Date = DateTime.Now.ToShortDateString(),
+                Image = "https://via.placeholder.com/150",
+                UserId = 1,
+            },
+            new Note
+            {
+                Id = 4,
+                Title = "Test 2 4",
+                Description = "This my 4th test note",
+                Date = DateTime.Now.ToShortDateString(),
+                Image = "https://via.placeholder.com/150",
+                UserId = 1,
             }
         ]);
     }
@@ -91,6 +109,15 @@ public class CryptoTrackerContext : DbContext
                     Id = 2,
                     Title = "Test 2",
                     Description = "This my second test note",
+                    Date = DateTime.Now.ToShortDateString(),
+                    Image = "https://via.placeholder.com/150",
+                    UserId = 1,
+                },
+                new Note
+                {
+                    Id = 3,
+                    Title = "Test 3",
+                    Description = "This is the 3rd note",
                     Date = DateTime.Now.ToShortDateString(),
                     Image = "https://via.placeholder.com/150",
                     UserId = 1,

@@ -28,8 +28,22 @@ public class NotesService(IDbContextFactory<CryptoTrackerContext> dbFactory) : I
     {
         var dbContext = await dbFactory.CreateDbContextAsync();
 
-        var note = await dbContext.Notes.FindAsync(id);
+        var note = dbContext.Notes.Find(id);
+        
         dbContext.Notes.Remove(note);
+        await dbContext.SaveChangesAsync();
+    }
+    
+    public async Task UpdateNoteAsync(int id ,Note note)
+    {
+        var dbContext = await dbFactory.CreateDbContextAsync();
+        
+        var currentNote = dbContext.Notes.FindAsync(id).Result;
+        
+        currentNote.Title = note.Title;
+        currentNote.Description = note.Description;
+        currentNote.Image = note.Image;
+        
         await dbContext.SaveChangesAsync();
     }
 }

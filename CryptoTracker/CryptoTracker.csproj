@@ -87,9 +87,6 @@
       <MauiXaml Update="Views\NoteListPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
-      <MauiXaml Update="Views\NoteAddPage.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
       <MauiXaml Update="Views\LoginPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
@@ -115,10 +112,6 @@
       </Compile>
       <Compile Update="Views\NoteListPage.xaml.cs">
         <DependentUpon>NoteListPage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Views\NoteAddPage.xaml.cs">
-        <DependentUpon>NoteAddPage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
       <Compile Update="Views\LoginPage.xaml.cs">

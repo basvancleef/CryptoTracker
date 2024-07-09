@@ -21,7 +21,7 @@ public static class MauiProgram
         // Register services:
         builder.Services.AddSingleton<HomeService>();
         builder.Services.AddSingleton<ArticleService>();
-        builder.Services.AddTransient<NotesService>();
+        builder.Services.AddSingleton<NotesService>();
         builder.Services.AddSingleton<ProfileService>();
         // builder.Services.AddSingleton<AuthService>();
 
@@ -32,7 +32,6 @@ public static class MauiProgram
         builder.Services.AddTransient<ProfilePage>();
         builder.Services.AddTransient<NoteDetailPage>();
         builder.Services.AddTransient<CoinDetailPage>();
-        builder.Services.AddTransient<NoteAddPage>();
         // builder.Services.AddTransient<LoginPage>();
         // builder.Services.AddTransient<RegisterPage>();
         // builder.Services.AddTransient<Loading>();
