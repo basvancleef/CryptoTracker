@@ -39,6 +39,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\CryptoTracker.Shared\CryptoTracker.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
         <!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4"/>
         <MauiImage Include="Resources\Images\Icons\heart.png" />
@@ -83,6 +87,18 @@
       <MauiXaml Update="Views\NoteListPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
+      <MauiXaml Update="Views\LoginPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Views\Loading.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Views\RegisterPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Views\CoinDetailPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
     </ItemGroup>
 
     <ItemGroup>
@@ -96,6 +112,22 @@
       </Compile>
       <Compile Update="Views\NoteListPage.xaml.cs">
         <DependentUpon>NoteListPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\LoginPage.xaml.cs">
+        <DependentUpon>LoginPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Loading.xaml.cs">
+        <DependentUpon>Loading.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\RegisterPage.xaml.cs">
+        <DependentUpon>RegisterPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\CoinDetailPage.xaml.cs">
+        <DependentUpon>CoinDetailPage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>

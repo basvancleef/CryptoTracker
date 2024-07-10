@@ -5,8 +5,10 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodel="clr-namespace:CryptoTracker.ViewModels"
-    xmlns:models="clr-namespace:CryptoTracker.Models"
+    xmlns:models="clr-namespace:Shared.Models;assembly=CryptoTracker.Shared"
     x:DataType="viewmodel:HomeViewModel"
+    x:Name="mainPage"
+    Shell.TabBarIsVisible="True"
     Title="{Binding Title}">
 
     <Grid
@@ -29,6 +31,10 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Currency">
                     <Grid Padding="10">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BindingContext.OpenDetailPageCommand, Source={x:Reference mainPage}}"
+                                                  CommandParameter="{Binding Id}"/>                                        
+                        </Grid.GestureRecognizers>
                         <FlexLayout HorizontalOptions="FillAndExpand"
                                     JustifyContent="SpaceBetween">
                             <HorizontalStackLayout

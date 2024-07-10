@@ -1,0 +1,8 @@
+GET http://localhost:5000/weatherforecast/
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+###
+

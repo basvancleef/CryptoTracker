@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CryptoTracker.Views.NoteDetailPage"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Margin"
+                    Value="0,10,0,10" />
+            <Setter Property="FontAttributes"
+                    Value="Bold" />
+            <Setter Property="FontSize"
+                    Value="20" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin"
+                    Value="0,5,0,5" />
+        </Style>
+    </ContentPage.Resources>
+    <VerticalStackLayout Margin="20">
+        <Label Text="Title" />
+        <Entry Text="{Binding Path=Note.Title}" 
+               Placeholder="Title" />
+        <Label Text="Description" />
+        <Entry Text="{Binding Path=Note.Description}"
+               Placeholder="Description" />
+        
+        <Button Text="Save" 
+                Command="{Binding SaveNoteCommand}" />
+        <Button Text="Delete"
+                Command="{Binding DeleteNoteCommand}" />
+        <Button Text="Cancel" 
+                Command="{Binding CancelNoteCommand}" />
+    </VerticalStackLayout>
+</ContentPage>
